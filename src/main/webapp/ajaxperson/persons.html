@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<button>click!!</button>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>이름</th>
+				<th>나이</th>
+				<th>성별</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$("button").on("click", function() {
+			$.getJSON("getpersonlist.jsp", function(data) {
+				 index = 0;
+				for ( let i in data) {
+					
+						$("tbody").append(
+				                  `<tr><td>${index + 1}</td>
+				                  <td>${data[i].name}</td>
+				                  <td>${data[i].age}</td>
+				                  <td>${data[i].gender}</td></tr>`      
+				                  );
+					
+				}
+			})
+		});
+	</script>
+</body>
+</html>

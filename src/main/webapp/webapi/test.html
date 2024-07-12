@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script type="text/javascript">
+new Promise(function(resolve, reject){
+	  setTimeout(function() {
+	    resolve(1);
+	  }, 2000);
+	})
+	.then(function(result) {
+	  console.log(result); // 1
+	  return result + 10;
+	})
+	.then(function(result) {
+	  console.log(result); // 11
+	  return result + 20;
+	})
+	.then(function(result) {
+	  console.log(result); // 31
+	});
+</script>
+</body>
+</html>

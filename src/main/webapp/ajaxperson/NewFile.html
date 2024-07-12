@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<input type="text" id="text">
+<button id="mybtn">검색</button>
+<div id="boxoffice">   
+</div>
+
+<script src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+$(function(){
+	$("#text").focus();
+	let url = "http://kobis.or.kr/kobisopenapi/webservice/rest/people/searchPeopleList.json?key=f5eef3421c602c6cb7ea224104795888"
+	
+	$("#mybtn").on("click", function() {
+		val = $("#text").val();
+		if(!val){
+			alert("글자를 입력해 주세요");
+			return false;
+		}
+		
+		$.getJSON(url+"&peopleNm="+val, function(data) {
+			re = data["peopleListResult"]["peopleList"];
+			$("#boxoffice").empty();
+			$("#boxoffice").append(val+"의 겸색결과 : "+data.peopleListResult.totCnt+"<br>");
+			for(let i in re){
+				$("#boxoffice").append(
+						"<p>"+ re[i].peopleNm+"<br> 직업 : "+ re[i].repRoleNm
+						+" <br> 필모 : "+	re[i].filmoNames+"</p><hr>"
+						);
+			}
+		})		
+	})
+})
+</script>
+</body>
+</html>

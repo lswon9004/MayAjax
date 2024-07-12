@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<button>click!!</button>
+	<div></div>
+	<!--  button 클릭시 data.jsp에서 응답한 결과물 : 과일 이름 출력 -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$("button").on("click", function() {
+			$.getJSON("data.jsp", function(data) {
+				for (let i in data) {
+					for (let j in data[i]) {
+						$("div").append(data[i][j] + "<br>")
+					}
+				}
+			})
+		});
+	</script>
+</body>
+</html>
